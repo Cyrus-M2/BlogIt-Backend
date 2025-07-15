@@ -46,8 +46,8 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 const allowedOrigins: string[] = [
-  "http://localhost:5173",
-  process.env.FRONTEND_URL, // Make sure this is set
+  // "http://localhost:5173",
+   "https://blog-it-frontend-theta.vercel.app"
 ].filter(Boolean) as string[];
 
 console.log("Allowed Origins:", allowedOrigins);
