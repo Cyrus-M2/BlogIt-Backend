@@ -89,27 +89,18 @@ dotenv.config();
 
 const app = express();
 
-// ✅ CORS must come before routes
-const allowedOrigins = [
+const allowedOrigins: string[] = [
   "http://localhost:5173",
-  process.env.FRONTEND_URL, // e.g. "https://blog-it-frontend-theta.vercel.app"
-].filter(Boolean); // remove undefined
+  process.env.FRONTEND_URL, // e.g. https://your-frontend.vercel.app
+].filter(Boolean) as string[];
+
 
 app.use(
   cors({
-    origin: (origin, callback) => {
-      console.log("Request Origin:", origin);
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        console.warn("Blocked by CORS:", origin);
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: allowedOrigins,
     credentials: true,
   })
 );
-
 app.use(express.json());
 
 // ✅ Route handlers
