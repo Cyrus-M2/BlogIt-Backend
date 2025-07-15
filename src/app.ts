@@ -45,23 +45,22 @@ const PORT = process.env.PORT || 5000;
 
 const app = express();
 
+// ✅ Define allowed frontend origins
 const allowedOrigins: string[] = [
-  // "http://localhost:5173",
-   "https://blog-it-frontend-theta.vercel.app"
-].filter(Boolean) as string[];
+  // "http://localhost:5173", // uncomment when testing locally
+  "https://blog-it-frontend-theta.vercel.app"
+];
 
 console.log("Allowed Origins:", allowedOrigins);
 
+// ✅ Apply CORS middleware
 app.use(
   cors({
     origin: allowedOrigins,
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
   })
 );
-
-// Handle preflight requests
-app.options("*", cors());
 
 app.use(express.json());
 
@@ -71,6 +70,7 @@ app.use("/api/blogs", blogRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/upload", uploadRoutes);
 
+// ✅ Optional default route
 app.get("/", (_, res) => {
   res.send("BlogIt Backend Running");
 });
