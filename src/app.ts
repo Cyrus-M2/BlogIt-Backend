@@ -86,6 +86,7 @@ import userRoutes from "./routes/user";
 import uploadRoutes from "./routes/upload";
 
 dotenv.config();
+const PORT = process.env.PORT || 5000;
 
 const app = express();
 
@@ -112,6 +113,10 @@ app.use("/api/upload", uploadRoutes);
 // Optional default route
 app.get("/", (_, res) => {
   res.send("BlogIt Backend Running");
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
 
 export default app;
