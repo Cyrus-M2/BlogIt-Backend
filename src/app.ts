@@ -65,10 +65,10 @@ app.use(
 app.use(express.json());
 
 // ✅ Route handlers
-app.use("/api/auth", authRoutes);
-app.use("/api/blogs", blogRoutes);
-app.use("/api/user", userRoutes);
-app.use("/api/upload", uploadRoutes);
+app.use("/auth", authRoutes);
+app.use("/blogs", blogRoutes);
+app.use("/user", userRoutes);
+app.use("/upload", uploadRoutes);
 
 // ✅ Optional default route
 app.get("/", (_, res) => {
